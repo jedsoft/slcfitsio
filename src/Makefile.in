@@ -65,8 +65,11 @@ all: $(MODULES)
 #---------------------------------------------------------------------------
 # Put Rules to create the modules here
 #---------------------------------------------------------------------------
-cfitsio-module.so: cfitsio-module.c version.h config.h cfitsio.h
+cfitsio-module.so: cfitsio-module.c version.h config.h cfitsio.h cfitsio-version.h
 	$(CC_SHARED) $(INCS) cfitsio-module.c -o cfitsio-module.so $(LIBS)
+cfitsio-version.h: cfitsio-version.c
+	$(CC) $(INCS) cfitsio-version.c -o cfitsio-version $(LIBS)
+	./cfitsio-version > cfitsio-version.h
 version.h: ../changes.txt
 	if [ -x $(UPDATE_VERSION_SCRIPT) ]; then \
 	  $(UPDATE_VERSION_SCRIPT) ../changes.txt ./version.h; \
@@ -131,5 +134,6 @@ install: all install_directories install_modules install_slfiles install_hlpfile
 
 clean:
 	-/bin/rm -f $(MODULES) *~ \#*
+	-/bin/rm -f cfitsio-version cfitsio-version.h
 distclean: clean
 	-/bin/rm -f config.h cfitsio.h Makefile $(MODULES) *.fit

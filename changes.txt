@@ -29,3 +29,7 @@ Changes since 0.4.6
     then that value will be written as a fits logical keyword value.
 15. configure: Parse /etc/ld.so.conf to find additional system lib
     directories.
+16. Cfitsio version 4.0.0 introduced a backwards-incompatible new
+    versioning scheme.   Debian patches (courtesy of Rafael
+    Laboissière) were added to to deal with both the old and new
+    schemes.

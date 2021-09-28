@@ -35,6 +35,7 @@
 #include <errno.h>
 
 #include "cfitsio.h"
+#include "cfitsio-version.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -1554,7 +1555,7 @@ static int write_col (FitsFile_Type *ft, int *colnum,
 
       default:
 	SLang_verror (SL_NOT_IMPLEMENTED,
-		      "fits_write_col: %s not suppported",
+		      "fits_write_col: %s not supported",
 		      SLclass_get_datatype_name (at->data_type));
 	return -1;
      }
@@ -2637,10 +2638,8 @@ static int check_version (void)
    float linked_version = 0;
    float tol = 0.0001;
 
-#ifdef CFITSIO_VERSION
-   compiled_version = CFITSIO_VERSION;
+   compiled_version = COMPILED_CFITSIO_VERSION;
    (void) fits_get_version (&linked_version);
-#endif
 
    if (fabs (linked_version - compiled_version) <= tol)
      return 0;
