@@ -66,9 +66,9 @@ all: $(MODULES)
 # Put Rules to create the modules here
 #---------------------------------------------------------------------------
 cfitsio-module.so: cfitsio-module.c version.h config.h cfitsio.h cfitsio-version.h
-	$(CC_SHARED) $(INCS) cfitsio-module.c -o cfitsio-module.so $(LIBS)
+	$(CC_SHARED) $(INCS) $(LDFLAGS) cfitsio-module.c -o cfitsio-module.so $(LIBS)
 cfitsio-version.h: cfitsio-version.c
-	$(CC) $(INCS) cfitsio-version.c -o cfitsio-version $(LIBS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(INCS) $(LDFLAGS) cfitsio-version.c -o cfitsio-version $(LIBS)
 	./cfitsio-version > cfitsio-version.h
 version.h: ../changes.txt
 	if [ -x $(UPDATE_VERSION_SCRIPT) ]; then \

@@ -33,3 +33,6 @@ Changes since 0.4.6
     versioning scheme.   Debian patches (courtesy of Rafael
     Laboissière) were added to to deal with both the old and new
     schemes.
+17. Updated aclocal.m4; added support for CPPFLAGS (based upon patch
+    from Rafael Laboissière)
+
